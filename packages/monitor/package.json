@@ -1,5 +1,5 @@
 {
-  "name": "@company/monitor",
+  "name": "@zhongxiaobing/monitor",
   "version": "0.1.0",
   "description": "Frontend monitoring SDK for React and Vue applications",
   "license": "MIT",
@@ -18,26 +18,10 @@
   "keywords": ["monitor", "react", "vue", "frontend", "observability"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zhongxiaobing-bs/monitor.git"
+    "url": "git+https://github.com/zhongxiaobing-bs/monitor.git"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "vue": "^3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    },
-    "vue": {
-      "optional": true
-    }
   },
   "scripts": {
     "build": "tsup",
@@ -45,13 +29,11 @@
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
+  "devDependencies": {
     "@company/monitor-core": "workspace:*",
     "@company/monitor-plugin-error": "workspace:*",
     "@company/monitor-plugin-network": "workspace:*",
     "@company/monitor-plugin-blank-screen": "workspace:*",
-    "@company/monitor-react": "workspace:*",
-    "@company/monitor-types": "workspace:*",
-    "@company/monitor-vue": "workspace:*"
+    "@company/monitor-types": "workspace:*"
   }
 }

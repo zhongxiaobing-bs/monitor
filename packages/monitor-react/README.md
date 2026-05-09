@@ -1,4 +1,4 @@
-# @company/monitor React 接入
+# @zhongxiaobing/monitor-react React 接入
 
 ## 极简接入
 
@@ -6,7 +6,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { createReactMonitor } from '@company/monitor'
+import { createReactMonitor } from '@zhongxiaobing/monitor-react'
 import App from './App'
 
 const { MonitorRoot, monitor } = createReactMonitor({

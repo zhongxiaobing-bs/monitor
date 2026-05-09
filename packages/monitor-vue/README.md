@@ -1,11 +1,11 @@
-# @company/monitor Vue 接入
+# @zhongxiaobing/monitor-vue Vue 接入
 
 ## 极简接入
 
 ```ts
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import { createVueMonitor } from '@company/monitor'
+import { createVueMonitor } from '@zhongxiaobing/monitor-vue'
 import App from './App.vue'
 
 const { plugin: monitorPlugin, monitor } = createVueMonitor({

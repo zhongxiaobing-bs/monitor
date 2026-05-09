@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "paths": {
+      "@company/monitor": ["./packages/monitor/src"],
+      "@company/monitor-core": ["./packages/monitor-core/src/index.ts"],
+      "@company/monitor-types": ["./packages/monitor-types/src/index.ts"],
+      "@company/monitor-shared": ["./packages/monitor-shared/src/index.ts"],
+      "@company/monitor-transport": ["./packages/monitor-transport/src/index.ts"],
+      "@company/monitor-plugin-error": ["./packages/monitor-plugin-error/src/index.ts"],
+      "@company/monitor-plugin-network": ["./packages/monitor-plugin-network/src/index.ts"],
+      "@company/monitor-plugin-blank-screen": ["./packages/monitor-plugin-blank-screen/src/index.ts"],
+      "@company/monitor-react": ["./packages/monitor-react/src"],
+      "@company/monitor-vue": ["./packages/monitor-vue/src"]
+    }
+  }
+}
