@@ -11,6 +11,7 @@ export interface BaseMonitorEvent {
   timestamp?: number
   userAgent?: string
   userId?: string
+  pageLevel?: 'critical' | 'normal'
 }
 
 export interface ExceptionMonitorEvent extends BaseMonitorEvent {

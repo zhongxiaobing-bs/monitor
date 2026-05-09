@@ -77,3 +77,13 @@ export function fetchEvents(filter: EventsFilter) {
 export function fetchEvent(id: number) {
   return request<EventRow>(`/api/reports/events/${id}`)
 }
+
+export async function fetchEventByEventId(eventId: string) {
+  const result = await fetchEvents({
+    page: 1,
+    pageSize: 1,
+    eventId
+  })
+
+  return result.events[0] ?? null
+}

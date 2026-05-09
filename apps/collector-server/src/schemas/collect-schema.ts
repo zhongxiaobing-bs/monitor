@@ -12,7 +12,8 @@ export const baseEventSchema = z.object({
   title: z.string().optional(),
   timestamp: z.number().optional(),
   userAgent: z.string().optional(),
-  userId: z.string().optional()
+  userId: z.string().optional(),
+  pageLevel: z.enum(['critical', 'normal']).optional()
 })
 
 export const exceptionEventSchema = baseEventSchema.extend({

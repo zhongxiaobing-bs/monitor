@@ -48,6 +48,11 @@ function buildFilterClause(filters: ReportFilter, includeKeyword?: string) {
     conditions.push(`event_type = $${params.length}`)
   }
 
+  if (filters.eventId) {
+    params.push(filters.eventId)
+    conditions.push(`event_id = $${params.length}`)
+  }
+
   if (includeKeyword) {
     params.push(`%${includeKeyword}%`)
     conditions.push(`payload::text ILIKE $${params.length}`)

@@ -12,6 +12,7 @@ export interface EventsFilter extends ReportFilter {
   page: number
   pageSize: number
   keyword?: string
+  eventId?: string
 }
 
 export interface TrendPoint {

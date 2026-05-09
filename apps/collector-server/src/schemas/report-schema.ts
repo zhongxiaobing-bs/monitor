@@ -17,7 +17,8 @@ export const groupsQuerySchema = reportFilterSchema.extend({
 export const eventsQuerySchema = reportFilterSchema.extend({
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce.number().int().min(1).max(100).default(20),
-  keyword: z.string().min(1).optional()
+  keyword: z.string().min(1).optional(),
+  eventId: z.string().min(1).optional()
 })
 
 export const eventDetailParamsSchema = z.object({

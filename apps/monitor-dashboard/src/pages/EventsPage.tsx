@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   PageContainer,
   ProFormDateTimeRangePicker,
@@ -8,9 +8,10 @@ import {
   QueryFilter
 } from '@ant-design/pro-components'
 import type { ActionType, ProColumns } from '@ant-design/pro-components'
+import { useSearchParams } from 'react-router-dom'
 import type { EventRow, EventsFilter } from '../types/report'
 import EventDetailDrawer from '../components/EventDetailDrawer'
-import { fetchEvents } from '../services/report-api'
+import { fetchEventByEventId, fetchEvents } from '../services/report-api'
 
 const eventTypeOptions = [
   { label: 'exception', value: 'exception' },
@@ -29,9 +30,35 @@ function formatDateTime(value: number | string | null) {
 
 export default function EventsPage() {
   const actionRef = useRef<ActionType | undefined>(undefined)
+  const [searchParams, setSearchParams] = useSearchParams()
   const [selectedId, setSelectedId] = useState<number | null>(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [filter, setFilter] = useState<Partial<EventsFilter>>({})
+
+  useEffect(() => {
+    const detailId = Number(searchParams.get('eventId'))
+
+    if (Number.isInteger(detailId) && detailId > 0) {
+      setSelectedId(detailId)
+      setDrawerOpen(true)
+      return
+    }
+
+    const monitorEventId = searchParams.get('monitorEventId')
+
+    if (!monitorEventId) {
+      return
+    }
+
+    void fetchEventByEventId(monitorEventId).then((event) => {
+      if (!event) {
+        return
+      }
+
+      setSelectedId(event.id)
+      setDrawerOpen(true)
+    })
+  }, [searchParams])
 
   const columns: ProColumns<EventRow>[] = [
     {
@@ -109,6 +136,7 @@ export default function EventsPage() {
           onClick: () => {
             setSelectedId(record.id)
             setDrawerOpen(true)
+            setSearchParams({ eventId: String(record.id) })
           }
         })}
       />
@@ -116,7 +144,11 @@ export default function EventsPage() {
       <EventDetailDrawer
         id={selectedId}
         open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
+        onClose={() => {
+          setDrawerOpen(false)
+          setSelectedId(null)
+          setSearchParams({})
+        }}
       />
     </PageContainer>
   )

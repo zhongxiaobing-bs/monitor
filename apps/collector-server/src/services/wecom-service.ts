@@ -1,4 +1,6 @@
-export async function sendWecomMarkdown(markdown: string) {
+import type { WecomTemplateCardPayload } from '../formatters/wecom-message'
+
+async function postWecomMessage(payload: Record<string, unknown>) {
   const webhookUrl = process.env.WECOM_WEBHOOK_URL
 
   if (!webhookUrl) {
@@ -10,12 +12,7 @@ export async function sendWecomMarkdown(markdown: string) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      msgtype: 'markdown',
-      markdown: {
-        content: markdown
-      }
-    })
+    body: JSON.stringify(payload)
   })
 
   if (!response.ok) {
@@ -33,4 +30,17 @@ export async function sendWecomMarkdown(markdown: string) {
       `Wecom webhook returned error: ${result.errcode} ${result.errmsg || ''}`
     )
   }
+}
+
+export function sendWecomMarkdown(markdown: string) {
+  return postWecomMessage({
+    msgtype: 'markdown',
+    markdown: {
+      content: markdown
+    }
+  })
+}
+
+export function sendWecomTemplateCard(card: WecomTemplateCardPayload) {
+  return postWecomMessage(card as unknown as Record<string, unknown>)
 }

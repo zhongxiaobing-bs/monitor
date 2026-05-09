@@ -8,12 +8,14 @@ export interface ReportFilter {
   appName?: string
   env?: string
   eventType?: string
+  eventId?: string
 }
 
 export interface EventsFilter extends ReportFilter {
   page: number
   pageSize: number
   keyword?: string
+  eventId?: string
 }
 
 export interface GroupsFilter extends ReportFilter {

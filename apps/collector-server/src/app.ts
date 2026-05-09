@@ -1,6 +1,6 @@
 import Fastify from 'fastify'
 import { formatBlankScreenLog } from './formatters/blank-screen-log'
-import { formatExceptionMarkdown } from './formatters/wecom-message'
+import { formatExceptionTemplateCard } from './formatters/wecom-message'
 import {
   collectRequestSchema,
   parseMonitorEvent
@@ -9,7 +9,7 @@ import { EventRepository } from './db/event-repository'
 import { ReportRepository } from './db/report-repository'
 import { registerReportRoutes } from './routes/report-routes'
 import { DedupeService } from './services/dedupe-service'
-import { sendWecomMarkdown } from './services/wecom-service'
+import { sendWecomTemplateCard } from './services/wecom-service'
 import type {
   BlankScreenMonitorEvent,
   ExceptionMonitorEvent,
@@ -162,8 +162,19 @@ export function createApp({ eventRepository, reportRepository }: AppDependencies
       }
 
       try {
-        const markdown = formatExceptionMarkdown(event)
-        await sendWecomMarkdown(markdown)
+        const relatedBlankScreenEvent = blankScreenEvents.find(
+          (blankScreenEvent) =>
+            (blankScreenEvent.pathname || blankScreenEvent.url) ===
+            (event.pathname || event.url)
+        )
+        const card = formatExceptionTemplateCard({
+          event,
+          blankScreenEvent: relatedBlankScreenEvent,
+          isFrequent: false,
+          dashboardBaseUrl:
+            process.env.MONITOR_DASHBOARD_BASE_URL || 'http://localhost:5173'
+        })
+        await sendWecomTemplateCard(card)
         notifiedCount += 1
       } catch (error) {
         app.log.error(

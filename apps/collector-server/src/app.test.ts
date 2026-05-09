@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createApp } from './app'
 
 vi.mock('./services/wecom-service', () => ({
-  sendWecomMarkdown: vi.fn().mockResolvedValue(undefined)
+  sendWecomTemplateCard: vi.fn().mockResolvedValue(undefined)
 }))
 
 describe('createApp', () => {
