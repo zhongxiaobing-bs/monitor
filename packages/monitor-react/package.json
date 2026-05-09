@@ -1,0 +1,43 @@
+{
+  "name": "@company/monitor-react",
+  "version": "0.1.0",
+  "description": "React bindings for @company/monitor",
+  "license": "MIT",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "keywords": ["monitor", "react", "frontend", "observability"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhongxiaobing-bs/monitor.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@company/monitor-core": "workspace:*",
+    "@company/monitor-plugin-blank-screen": "workspace:*",
+    "@company/monitor-plugin-error": "workspace:*",
+    "@company/monitor-plugin-network": "workspace:*",
+    "@company/monitor-types": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  }
+}

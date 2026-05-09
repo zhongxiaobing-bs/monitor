@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@company/monitor": ["packages/monitor/src"],
+      "@company/monitor-core": ["packages/monitor-core/src"],
+      "@company/monitor-types": ["packages/monitor-types/src"],
+      "@company/monitor-shared": ["packages/monitor-shared/src"],
+      "@company/monitor-transport": ["packages/monitor-transport/src"],
+      "@company/monitor-plugin-error": ["packages/monitor-plugin-error/src"],
+      "@company/monitor-plugin-network": ["packages/monitor-plugin-network/src"],
+      "@company/monitor-plugin-blank-screen": ["packages/monitor-plugin-blank-screen/src"],
+      "@company/monitor-react": ["packages/monitor-react/src"],
+      "@company/monitor-vue": ["packages/monitor-vue/src"]
+    },
+    "lib": ["ES2019", "DOM"],
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true
+  }
+}
